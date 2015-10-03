@@ -1,6 +1,5 @@
 ;; load path
 (add-to-list 'load-path "~/.emacs.d/lisp")
-(add-to-list 'load-path "~/.emacs.d/packages/")
 
 ;; setup package
 (require 'setup-package)
@@ -19,7 +18,12 @@
    (cons 'web-mode melpa)
    (cons 'flymake melpa)
    (cons 'csharp-mode melpa)
-   (cons 'go-mode melpa)))
+   (cons 'go-mode melpa)
+   (cons 'ag melpa)
+   (cons 'flx-ido melpa)
+   (cons 'projectile melpa)
+   (cons 'yaml-mode melpa)
+   (cons 'thrift melpa)))
 
 (condition-case nil
     (init--install-packages)
@@ -34,17 +38,19 @@
 (eval-after-load 'org '(require 'setup-org))
 (require 'setup-ido)
 (require 'setup-uniquify)
+(require 'setup-flx)
+(require 'setup-projectile)
 (require 'setup-multi-term)
 (require 'setup-ffip)
 (require 'setup-rebuilder)
 (require 'setup-clipboard)
-;;(require 'setup-html)
 (require 'setup-web)
 (require 'setup-xml)
 (require 'setup-python)
 (require 'setup-rst)
 (require 'setup-csharp)
 (require 'setup-go)
+(require 'setup-yaml)
 
 ;; setup extensions
 (eval-after-load 'lua-mode '(require 'setup-lua))
@@ -58,3 +64,5 @@
 (require 'setup-mappings)
 (require 'setup-aliases)
 
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)

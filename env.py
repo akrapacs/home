@@ -5,6 +5,7 @@ import getopt
 import os
 from os.path import join, realpath, dirname, expanduser, exists
 import subprocess
+import platform
 
 def call(args):
     ret = subprocess.call(args)
@@ -20,18 +21,26 @@ def main():
     cwd = os.getcwd()
     os.chdir(home_path)
 
-    call(["ln", "-fs", join(env_path, "bin"), "bin"])
-    
-    call(["ln", "-fs", join(env_path, "bashrc"), ".bashrc"])
-    call(["ln", "-fs", join(env_path, "emacs"), ".emacs"])
-    call(["ln", "-fs", join(env_path, "emacs.d"), ".emacs.d"])
-    call(["ln", "-fs", join(env_path, "gitconfig"), ".gitconfig"])
-    call(["ln", "-fs", join(env_path, "hgrc"), ".hgrc"])
-    call(["ln", "-fs", join(env_path, "profile"), ".profile"])
+    call(["rm", "-fr", "bin"])
+    call(["ln", "-vfs", join(env_path, "bin"), "bin"])
+
+    call(["ln", "-vfs", join(env_path, "bashrc"), ".bashrc"])
+    call(["ln", "-vfs", join(env_path, "emacs"), ".emacs"])
+    call(["ln", "-vfs", join(env_path, "emacs.d"), ".emacs.d"])
+    call(["ln", "-vfs", join(env_path, "hgrc"), ".hgrc"])
+    call(["ln", "-vfs", join(env_path, "profile"), ".profile"])
+
+    call(["ln", "-vfs", join(env_path, "vim"), ".vim"])
+    call(["ln", "-vfs", join(env_path, "vimrc"), ".vimrc"])
+
+    if platform.system() == "Linux":
+        call(["ln", "-vfs", join(env_path, "gitconfig.linux"), ".gitconfig"])
+    else:
+        call(["ln", "-vfs", join(env_path, "gitconfig.mac"), ".gitconfig"])
 
     if not exists(join(".subversion")):
-        os.mkdirs(".subversion")
-    call(["ln", "-fs", join(env_path, "subversion.config"), ".subversion/config"])
+        os.makedirs(".subversion")
+    call(["ln", "-vfs", join(env_path, "subversion.config"), ".subversion/config"])
     
     os.chdir(cwd)
     
