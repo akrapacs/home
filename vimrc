@@ -28,6 +28,15 @@ set expandtab       " expand tabs to spaces
 set cursorline
 set incsearch
 
+" set nowrap
+set ruler
+set showcmd
+set autoindent
+set smartindent
+set hlsearch
+set showtabline=1
+set title
+
 " Key Mappings
 let mapleader = ","
 nnoremap <silent> <leader>t :CommandT<CR>
@@ -37,6 +46,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <silent> <leader>f :NERDTreeFocus<CR>
 
 " Ignores
 set wildignore+=*.meta

@@ -10,7 +10,9 @@
       (process-send-eof proc))))
 
 ;; install the commands
-(setq interprogram-paste-function 'mac-copy)
-(setq interprogram-cut-function 'mac-paste)
+(if (eq system-type 'darwin)
+  (setq interprogram-paste-function 'mac-copy)
+  (setq interprogram-cut-function 'mac-paste)
+)
 
 (provide 'setup-clipboard)
