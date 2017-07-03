@@ -13,6 +13,7 @@ Plugin 'rking/ag.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'solarnz/thrift.vim'
+Plugin 'bumaociyuan/vim-swift'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
